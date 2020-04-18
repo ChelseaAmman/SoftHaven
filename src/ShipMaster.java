@@ -1,0 +1,2 @@
+public class ShipMaster {
+}
