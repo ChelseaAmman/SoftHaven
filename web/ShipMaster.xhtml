@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Ship Master</title>
+</h:head>
+<h:body>
+    <h:graphicImage value="hms-logo.png" style="margin:30px"/>
+    <f:view>
+        <h:form>
+            <h:panelGroup id="input" style="width:100%">
+                <label for="sName">Ship Name: </label><p:inputText value="#{shipmstrmngr.notice.name}" style="width:15%;margin:1%" id="sName"/>
+                <label for="callSign">Call Sign: </label><p:inputText value="#{shipmstrmngr.notice.mmsi}" style="width:15%;margin:1%" id="callSign"/>
+                <label for="imoNumber">IMO Number: </label><p:inputText value="#{shipmstrmngr.notice.client}" style="width:15%;margin:1%" id="imoNumber"/>
+                <label for="agentInfo">Agent Information: </label><p:inputText value="#{shipmstrmngr.notice.client}" style="width:15%;margin:1%" id="agentInfo"/>
+                <label for="aForm">Arriving Form: </label><p:inputText value="#{shipmstrmngr.notice.client}" style="width:15%;margin:1%" id="aForm"/>
+                <label for="eta">Estimated Time of Arrival (ETA): </label><p:inputText value="#{shipmstrmngr.notice.client}" style="width:15%;margin:1%" id="eta"/>
+                <label for="bNumber">Berth Number: </label><p:inputText value="#{shipmstrmngr.notice.client}" style="width:15%;margin:1%" id="bNumber"/>
+                <label for="nextPort">Next Port: </label><p:inputText value="#{shipmstrmngr.notice.client}" style="width:15%;margin:1%" id="nextPort"/>
+                <label for="etd">Estimated Time of Departure (ETD): </label><p:inputText value="#{shipmstrmngr.notice.client}" style="width:15%;margin:1%" id="etd"/>
+                <label for="disCargoD">Discharging Cargo (Description): </label><p:inputText value="#{shipmstrmngr.notice.client}" style="width:15%;margin:1%" id="disCargoD"/>
+                <label for="disCargoA">Discharging Cargo (Amount): </label><p:inputText value="#{shipmstrmngr.notice.client}" style="width:15%;margin:1%" id="disCargoA"/>
+                <label for="loadCargoD">Loading Cargo (Description): </label><p:inputText value="#{shipmstrmngr.notice.client}" style="width:15%;margin:1%" id="loadCargoD"/>
+                <label for="loadCargoA">Loading Cargo (Amount): </label><p:inputText value="#{shipmstrmngr.notice.client}" style="width:15%;margin:1%" id="loadCargoA"/>
+                <label for="nPassArr">Number of Passengers (On Arrival): </label><p:inputText value="#{shipmstrmngr.notice.client}" style="width:15%;margin:1%" id="nPassArr"/>
+                <label for="nPassDep">Number of Passengers (On Departure): </label><p:inputText value="#{shipmstrmngr.notice.client}" style="width:15%;margin:1%" id="nPassDep"/>
+                <label for="crewDocs">Crew Documents (For Customs): </label><p:inputText value="#{shipmstrmngr.notice.client}" style="width:15%;margin:1%" id="crewDocs"/>
+                <label for="formVal">Form Validation (For Customs): </label><p:inputText value="#{shipmstrmngr.notice.client}" style="width:15%;margin:1%" id="formVal"/>
+                <h:panelGroup style="width:8%;margin:1%">
+                    <p:commandButton value="SEND" actionListener="#{noticeMgr.mesg}" style="background-color:transparent;"/>
+                    <p:commandButton icon="ui-icon-refresh"
+                                     style="background-color:transparent;border-style:none;"
+                                     update="input" />
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:form>
+    </f:view>
+</h:body>
+</html>

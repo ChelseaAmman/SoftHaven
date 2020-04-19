@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PortCall.iml" filepath="$PROJECT_DIR$/PortCall.iml" />
-      <module fileurl="file://$PROJECT_DIR$/softhaven.iml" filepath="$PROJECT_DIR$/softhaven.iml" />
     </modules>
   </component>
 </project>
