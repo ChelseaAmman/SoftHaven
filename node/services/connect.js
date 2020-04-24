@@ -10,9 +10,8 @@ module.exports = {
 		return url + "/" + dbName;
 		},
 
-	connect: function connect() {
+	connect: function test_connect() {
 	const MongoClient = require('mongodb').MongoClient;
-
 	const dbName = 'DenmarkTraffic';
 	const url = 'mongodb://localhost:27017';
 	const dbCollection = 'ais_prod';

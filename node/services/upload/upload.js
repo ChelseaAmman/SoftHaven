@@ -11,13 +11,20 @@ module.exports = {
 
 	MongoClient.connect(url , {useUnifiedTopology: true} )
 		.then( function(clt){
-			const db = clt.db(dbName);
-			db.collection(dbCollection).insertOne(data)
-				.then( function(){
+			const mdb = clt.db(dbName).collection(dbCollection);
+			console.log(data.length);
+			if (data.length > 25) { //TODO: find a better way to filter empty documents
+				console.log(JSON.parse(data));
+				mdb.insertMany(JSON.parse(data))
+					.then( function(){
+					clt.close();
+					})
+			}
+			else {
 				clt.close();
-				})
+			}
 			console.log("Successful upload");
-		})
+		});
 
 	}
 }
