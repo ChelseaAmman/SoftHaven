@@ -4,6 +4,7 @@ const http = require('http');
 const hostname = '127.0.0.1';
 const port = 3000;
 const upload = require('./services/upload/upload');
+const query = require('./services/query/query');
 
 
 const server = http.createServer((req, res) => {
@@ -25,8 +26,17 @@ const server = http.createServer((req, res) => {
 
 
 		else if ( /query/g.test(req_url.pathname)) {
-			var test = 7;
-		}
+						let body = '';
+			req.on('data', chunk => {
+				body += chunk.toString();
+			});
+			req.on('end', () => {
+				console.log(body);
+				let result = query.query(body);
+				res.write(result);
+				res.end('ok');
+			});
+			}
 
 		}
 	});
@@ -105,7 +115,7 @@ function getDeparture(mmsi, url){
 	// C = notAfunction({ "mmsi" : mmsi });
 	sendData(url,D)
 	return D;
-	
+
 }
 
 function getMessage(mmsi, url){
@@ -153,7 +163,7 @@ function getShipData(mmsi, property){
 			break;
 		case "Owner_Code":
 				var p = getShip(mmsi).Owner_Code
-			break;						
+			break;
 	}
 	return p;
 }

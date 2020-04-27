@@ -13,9 +13,11 @@ module.exports = {
 
 	}
 
-	function query_mdb(mc) {
+	async function query_mdb(mc) {
 			const mdb = mc.db(dbName).collection(dbCollection);
-			return mdb.find(query_mmsi).toArray().finally(mc.close);
+			let process = await mdb.find(query_mmsi).toArray();
+			mc.close();
+			return process;
 	}
 	return new_client();
 	}
