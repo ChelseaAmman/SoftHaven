@@ -4,9 +4,9 @@ import beans.PreArrivalForm;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomsDAO {
 
@@ -66,6 +66,40 @@ public class CustomsDAO {
                 throw new RecordException("Failed insertion!");
             }
             return null;
+        });
+    }
+
+    public List<PreArrivalForm> getPafs(){
+        return withDB(new RunJDBC<List<PreArrivalForm>>() {
+            @Override
+            public List<PreArrivalForm> run(Connection con) throws Exception {
+                List<PreArrivalForm> pafList = new ArrayList<PreArrivalForm>();
+                Statement s = con.createStatement();
+                final String sql="select * from prearrival where FormValidation=0;";
+                ResultSet rs = s.executeQuery(sql);
+                while(rs.next()){
+                    PreArrivalForm paf = new PreArrivalForm();
+                    paf.setsName(rs.getString("Ship Name"));
+                    paf.setCallSign(rs.getString("Call Sign"));
+                    paf.setImoNum(rs.getInt("IMO Num"));
+                    paf.setAgentInfo(rs.getString("Agent Information"));
+                    paf.setaForm(rs.getString("Arriving From"));
+                    paf.setEta(rs.getInt("Estimated Time of Arrival (ETA)"));
+                    paf.setbNum(rs.getInt("Berth Number"));
+                    paf.setNextPort(rs.getString("Next Port"));
+                    paf.setEtd(rs.getInt("Estimated Time of Departure (ETD)"));
+                    paf.setDiscargoD(rs.getString("Discharging Cargo Description"));
+                    paf.setDisCargoA(rs.getInt("Discharging Cargo Amount"));
+                    paf.setLoadCargoD(rs.getString("Loading Cargo Description"));
+                    paf.setLoadCargoA(rs.getInt("Loading Cargo Amount"));
+                    paf.setnPassArr(rs.getInt("Number of Passengers on Arrival"));
+                    paf.setnPassDep(rs.getInt("Number of Passengers on Departure"));
+                    paf.setFormVal(rs.getInt("Form Validation"));
+
+                    pafList.add(paf);
+                }
+                return pafList;
+            }
         });
     }
 }

@@ -1,8 +1,7 @@
 package dao;
 
 import beans.BerthRecord;
-
-import java.math.BigDecimal;
+import beans.PreArrivalForm;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,25 +41,22 @@ public class AgentDAO {
         });
     }
 
-    public void add( final int id, final String title, final String desc, final String author, final String price) {
+    public void add(BerthRecord record) {
 
         withDB( new RunJDBC<BerthRecord>() {
             public BerthRecord run( Connection con) throws Exception {
                 PreparedStatement req = con.prepareStatement(
-                        "insert into Book (id, title, description, " +
-                                "author, price) values (?,?,?,?,?)" );
-                req.setInt(1,  id);
-                req.setString(2,  title);
-                req.setString(3, desc);
-                req.setString(4, author);
-
-                try {
-                    req.setBigDecimal(5, new BigDecimal(price));
-                } catch ( NumberFormatException e) {
-                    req.setBigDecimal(5,  new BigDecimal("0.0"));
-                }
+                        "insert into berthingrecord values (?,?,?,?,?,?,?,?)" );
+                req.setInt(1,  record.getImoNum());
+                req.setString(2,  record.getQuay());
+                req.setInt(3, record.getbNum());
+                req.setInt(4, record.getEta());
+                req.setInt(5,record.getAta());
+                req.setInt(6,record.getEtd());
+                req.setInt(7,record.getAtd());
+                req.setInt(8,record.getStatus());
                 int nbLines = req.executeUpdate();
-                if (nbLines!=1) {
+                if (nbLines != 1) {
                     throw new RecordException("Failed insertion!");
                 }
                 return null;
@@ -68,53 +64,22 @@ public class AgentDAO {
         });
     }
 
-    public void modify( final int id, final String title, final String desc, final String author, final String price) {
-
-        System.out.println("in Modify()");
-
+    public void setRecordState(BerthRecord record, final int imo, int state){
         withDB( new RunJDBC<BerthRecord>() {
             public BerthRecord run( Connection con) throws Exception {
-
                 PreparedStatement req = con.prepareStatement(
-                        "update Book set title=?, description=?, " +
-                                "author=?, price=? where id=?");
-                req.setString(1,  title);
-                req.setString(2,  desc);
-                req.setString(3, author);
-
-                try {
-                    req.setBigDecimal(4, new BigDecimal(price));
-                } catch ( NumberFormatException e) {
-                    req.setBigDecimal(4,  new BigDecimal("0.0"));
-                }
-                req.setInt(5,  id);
+                        "update berthingrecord set Status=? where IMO=?");
+                req.setInt(1, record.getStatus());
+                req.setInt(2, record.getImoNum());
                 int nbLines = req.executeUpdate();
-                System.out.println("in Modify()");
-                if (nbLines!=1) {
-                    System.out.println("Exception during modify");
-                    throw new RecordException("Failed update!");
+                if (nbLines != 1) {
+                    throw new RecordException("Failed insertion!");
                 }
                 return null;
             }
         });
     }
 
-
-    public void delete( final int id ) {
-        withDB( new RunJDBC<BerthRecord> () {
-            public BerthRecord run( Connection con) throws Exception {
-                PreparedStatement req = con.prepareStatement(
-                        "delete from Book where id = ?"
-                );
-                req.setInt(1, id);
-                int nbLines = req.executeUpdate();
-                if (nbLines != 1){
-                    throw new RecordException("Deletion failed");
-                }
-                return null;
-            }
-        });
-    }
     static interface RunJDBC <T>{
         T run(Connection con) throws Exception;
     }
@@ -155,20 +120,36 @@ public class AgentDAO {
     }
 
 
-    private List<BerthRecord> list(final String sortkey ){
-        return withDB( new RunJDBC<List<BerthRecord>>() {
-            public List<BerthRecord> run (Connection con) throws Exception {
-                List<BerthRecord> list = new ArrayList<BerthRecord>();
-                Statement stt = con.createStatement();
-                final String req = "select * from Book" +
-                        (sortkey!=null? " ORDER BY " + sortkey + ";" : ";");
-                ResultSet rs = stt.executeQuery(req);
-                while (rs.next()) {
-                    BerthRecord record = new BerthRecord();
-                    list.add( record );
-                }
+    public List<PreArrivalForm> getPafs(){
+        return withDB(new RunJDBC<List<PreArrivalForm>>() {
+            @Override
+            public List<PreArrivalForm> run(Connection con) throws Exception {
+                List<PreArrivalForm> pafList = new ArrayList<PreArrivalForm>();
+                Statement s = con.createStatement();
+                final String sql="select * from prearrival where FormValidation=0;";
+                ResultSet rs = s.executeQuery(sql);
+                while(rs.next()){
+                    PreArrivalForm paf = new PreArrivalForm();
+                    paf.setsName(rs.getString("Ship Name"));
+                    paf.setCallSign(rs.getString("Call Sign"));
+                    paf.setImoNum(rs.getInt("IMO Num"));
+                    paf.setAgentInfo(rs.getString("Agent Information"));
+                    paf.setaForm(rs.getString("Arriving From"));
+                    paf.setEta(rs.getInt("Estimated Time of Arrival (ETA)"));
+                    paf.setbNum(rs.getInt("Berth Number"));
+                    paf.setNextPort(rs.getString("Next Port"));
+                    paf.setEtd(rs.getInt("Estimated Time of Departure (ETD)"));
+                    paf.setDiscargoD(rs.getString("Discharging Cargo Description"));
+                    paf.setDisCargoA(rs.getInt("Discharging Cargo Amount"));
+                    paf.setLoadCargoD(rs.getString("Loading Cargo Description"));
+                    paf.setLoadCargoA(rs.getInt("Loading Cargo Amount"));
+                    paf.setnPassArr(rs.getInt("Number of Passengers on Arrival"));
+                    paf.setnPassDep(rs.getInt("Number of Passengers on Departure"));
+                    paf.setFormVal(rs.getInt("Form Validation"));
 
-                return list;
+                    pafList.add(paf);
+                }
+                return pafList;
             }
         });
     }
