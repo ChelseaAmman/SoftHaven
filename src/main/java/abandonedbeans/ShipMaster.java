@@ -1,15 +1,13 @@
-package beans;
+package abandonedbeans;
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonWriter;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.io.StringWriter;
 
-@Entity
+@Entity(name="ShipMaster")
 @Table(name="Prearrival")
 public class ShipMaster implements Serializable {
 

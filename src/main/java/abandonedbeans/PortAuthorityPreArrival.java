@@ -1,4 +1,4 @@
-package beans;
+package abandonedbeans;
 
 import javax.ejb.MessageDriven;
 import javax.jms.Message;
@@ -11,7 +11,7 @@ import javax.json.JsonValue;
 import java.io.StringReader;
 
 @MessageDriven(mappedName = "jms/myLog")
-public class PortAuthority implements MessageListener {
+public class PortAuthorityPreArrival implements MessageListener {
     @Override
     public void onMessage(Message message) {
         if(message instanceof TextMessage){

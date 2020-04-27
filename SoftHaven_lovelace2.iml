@@ -11,7 +11,7 @@
     <facet type="web" name="Web">
       <configuration>
         <descriptors>
-          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/WEB-INF/web.xml" />
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/Abandoned Views/web.xml" />
         </descriptors>
         <webroots>
           <root url="file://$MODULE_DIR$/web" relative="/" />
@@ -27,6 +27,7 @@
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
           <factory-entry name="SoftHaven_lovelace2" value="91df99d7-4ff2-4115-8f49-f3058703bc1c" />
+          <factory-entry name="myPortCall" />
           <factory-entry name="myPreArrivals" value="91df99d7-4ff2-4115-8f49-f3058703bc1c" />
         </datasource-mapping>
         <naming-strategy-map />

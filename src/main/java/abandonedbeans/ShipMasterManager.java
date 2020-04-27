@@ -1,4 +1,4 @@
-package beans;
+package abandonedbeans;
 
 import java.io.Serializable;
 
@@ -9,30 +9,29 @@ import javax.jms.*;
 
 
 @SessionScoped
-@Named("shipagntmngr")
-public class ShipAgentManager implements Serializable {
+@Named("shipmstrmngr")
+public class ShipMasterManager implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private ShipAgent record = new ShipAgent();
-
-    @Resource(mappedName = "jms/myRecords")
+    private ShipMaster notice = new ShipMaster();
+    @Resource(mappedName = "jms/myLog")
     private Queue logMessages;
 
     @Resource(mappedName = "jms/myMessageFactory1")
     private ConnectionFactory logFactory;
 
-    public void setRecord(ShipAgent record) {
-        this.record = record;
+    public void setNotice(ShipMaster notice) {
+        this.notice = notice;
     }
 
-    public ShipAgent getRecord() {
-        return record;
+    public ShipMaster getNotice() {
+        return notice;
     }
 
     public void mesg() {
         System.out.println("Message Sending");
-        String j = record.toJsonString();
+        String j = notice.toJsonString();
         sendMesg(j);
         System.out.println("Message Sent Successfully!");
     }

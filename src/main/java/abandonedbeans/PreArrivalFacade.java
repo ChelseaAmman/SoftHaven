@@ -1,6 +1,4 @@
-package beans;
-
-import beans.ShipMaster;
+package abandonedbeans;
 
 import javax.ejb.Local;
 import java.util.List;

@@ -1,41 +1,38 @@
-package beans;
+package abandonedbeans;
 
 import java.io.Serializable;
 
 import javax.annotation.Resource;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jms.*;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 
 
 @SessionScoped
-@Named("shipmstrmngr")
-public class ShipMasterManager implements Serializable {
+@Named("shipagntmngr")
+public class ShipAgentManager implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private ShipMaster notice = new ShipMaster();
-    @Resource(mappedName = "jms/myLog")
+    private ShipAgent record = new ShipAgent();
+
+    @Resource(mappedName = "jms/myRecords")
     private Queue logMessages;
 
     @Resource(mappedName = "jms/myMessageFactory1")
     private ConnectionFactory logFactory;
 
-    public void setNotice(ShipMaster notice) {
-        this.notice = notice;
+    public void setRecord(ShipAgent record) {
+        this.record = record;
     }
 
-    public ShipMaster getNotice() {
-        return notice;
+    public ShipAgent getRecord() {
+        return record;
     }
 
     public void mesg() {
         System.out.println("Message Sending");
-        String j = notice.toJsonString();
+        String j = record.toJsonString();
         sendMesg(j);
         System.out.println("Message Sent Successfully!");
     }

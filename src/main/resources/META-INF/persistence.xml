@@ -4,8 +4,9 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
-<persistence-unit name="myPreArrivals" transaction-type="JTA">
+<persistence-unit name="myPortCall" transaction-type="JTA">
     <jta-data-source>jdbc/MyPreArrivalDB</jta-data-source>
-    <class>beans.ShipMaster</class>
+    <class>abandonedbeans.ShipMaster</class>
+    <class>abandonedbeans.ShipAgent</class>
 </persistence-unit>
 </persistence>

@@ -1,4 +1,4 @@
-package beans;
+package abandonedbeans;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -7,17 +7,15 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Stateless
-public class PreArrivalFacadeBean implements PreArrivalFacade{
+public class BerthingRecordFacadeBean implements BerthingRecordFacade {
 
-    @PersistenceContext(name="myPreArrivals")
+    @PersistenceContext(name="myPortCall")
     EntityManager em;
 
-
     @Override
-    public void add(ShipMaster paf) {
-        em.persist(paf);
+    public void add(ShipAgent br) {
+        em.persist(br);
     }
-
     @Override
     public void delete(String imo) {
         ShipMaster paf = em.find(ShipMaster.class,imo);
@@ -25,16 +23,16 @@ public class PreArrivalFacadeBean implements PreArrivalFacade{
     }
 
     @Override
-    public ShipMaster searchPaf(String imo) {
-        return em.find(ShipMaster.class, imo);
+    public ShipAgent searchBR(String imo) {
+        return null;
     }
 
     @Override
-    public List<ShipMaster> display() {
-        String sql = "SELECT c from ShipMaster c";
+    public List<ShipAgent> display() {
+        String sql = "SELECT e from ShipMaster e";
         Query query = em.createQuery(sql);
         System.out.println(query.toString());
-        List<ShipMaster> list = query.getResultList();
+        List<ShipAgent> list = query.getResultList();
         return list;
-        }
     }
+}

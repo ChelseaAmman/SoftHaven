@@ -1,16 +1,17 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: chels
-  Date: 4/25/2020
-  Time: 5:34 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <title>SoftHaven</title>
+</head>
+<body>
+<div>
+    <h2>Welcome to PortCall</h2>
+</div>
+<a href="${pageContext.request.contextPath}/shipAgent.jsp">Ship Agent</a>
+<a href="${pageContext.request.contextPath}/shipMaster.jsp">Ship Master</a>
+<a href="${pageContext.request.contextPath}/Customs.jsp">Customs Agent</a>
+</body>
 </html>
