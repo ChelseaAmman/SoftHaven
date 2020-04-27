@@ -1,4 +1,4 @@
-var data = [] //TODO hook var data to backend/make get request
+
 const http = require('http');
 
 const hostname = '127.0.0.1';
@@ -26,49 +26,106 @@ const server = http.createServer((req, res) => {
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
-//TODO get array of objects/ all we need here is data
-var data = XMLHttp.open("GET",'') //I am Unsure what to do here, there may be a better way???
 
-function getShip(imo){
-	var ship = data.find( ({ IMO }) => IMO === imo );
-	return ship
+var data = [[
+	{
+	  "IMO": "1000000",
+	  "Flag": "Finland",
+	  "Name": "Triton Star",
+	  "Built": "2012",
+	  "CallSign": "null",
+	  "Length": "null",
+	  "Breadth": "null",
+	  "Tonnage": "41101",
+	  "MMSI": "367303060",
+	  "Type": "Bulk Carrier",
+	  "Owner_Code": "null"
+	},
+	{
+	  "IMO": "1000001",
+	  "Flag": "Indonesia",
+	  "Name": "Spob Athamara",
+	  "Built": "null",
+	  "CallSign": "null",
+	  "Length": "47",
+	  "Breadth": "6",
+	  "Tonnage": "null",
+	  "MMSI": "525000003",
+	  "Type": "Product Tanker",
+	  "Owner_Code": "null"
+	},
+	{
+	  "IMO": "1000019",
+	  "Flag": "United Kingdom",
+	  "Name": "Lady K Ii",
+	  "Built": "1961",
+	  "CallSign": "3FOV",
+	  "Length": "57",
+	  "Breadth": "8",
+	  "Tonnage": "551",
+	  "MMSI": "235095435",
+	  "Type": "Yacht",
+	  "Owner_Code": "11715"
+	}
+  ]]
+
+function getCoordinates(mmsi){
+	let C = { "mmsi" : mmsi };
+	// C = notAfunction({ "mmsi" : mmsi });
+	console.log(C);
+	return C;
 }
-//num is the IMO of the Ship, they all have different IMO's so I assumed it would be the best choice
-function getProperty(num, shipProp){
-	switch(shipProp) {
+
+function getEntrance(){
+	return
+}
+
+function getDeparture(){
+	return
+}
+
+function getMessage(){
+	return
+}
+
+
+function getShip(mmsi){
+	let s = getShip.find( ({ MMSI }) => MMSI === mmsi )
+	return s;
+}
+
+function getShipData(mmsi, property){
+	switch(property){
+		case "IMO":
+			var p = getShip(mmsi).IMO
+			break;
 		case "Flag":
-			var P = getShip(num).Flag;
-		  break;
+				var p = getShip(mmsi).Flag
+			break;
 		case "Name":
-			var P = getShip(num).Name;
-		  break;
+				var p = getShip(mmsi).Name
+			break;
 		case "Built":
-			var P = getShip(num).Built;
-		  break;
+				var p = getShip(mmsi).Built
+			break;
 		case "CallSign":
-			var P = getShip(num).CallSign;
-		  break;  
+				var p = getShip(mmsi).CallSign
+			break;
 		case "Length":
-			var P = getShip(num).Length;
-		  break;
+				var p = getShip(mmsi).Length
+			break;
 		case "Breadth":
-			var P = getShip(num).Breadth;
-		  break;
+				var p = getShip(mmsi).Breadth
+			break;
 		case "Tonnage":
-			var P = getShip(num).Tonnage;
-		  break;
-		case "MMSI":
-			var P = getShip(num).MMSI;
-		  break;  
+				var p = getShip(mmsi).Tonnage
+			break;
 		case "Type":
-			var P = getShip(num).Type;
-		  break;
+				var p = getShip(mmsi).Type
+			break;
 		case "Owner_Code":
-			var P = getShip(num).Owner_Code;
-		  break; 
-		default:
-		  var P = 'Invalid'
-	  }
-	console.log(P)
-	return P;
+				var p = getShip(mmsi).Owner_Code
+			break;						
+	}
+	return p;
 }
