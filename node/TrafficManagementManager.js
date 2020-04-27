@@ -7,6 +7,8 @@ const upload = require('./services/upload/upload');
 const server = http.createServer((req, res) => {
 	if (req.method === "POST") {
 		req_url = new URL(req.url, `http://${req.headers.host}`);
+
+
 		if ( /upload/g.test(req_url.pathname)) {
 			let body = '';
 			req.on('data', chunk => {
@@ -18,6 +20,12 @@ const server = http.createServer((req, res) => {
 				res.end('ok');
 			});
 			}
+
+
+		else if ( /query/g.test(req_url.pathname)) {
+			var test = 7;
+		}
+
 		}
 	});
 
