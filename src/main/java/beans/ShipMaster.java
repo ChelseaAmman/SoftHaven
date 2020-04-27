@@ -3,32 +3,40 @@ package beans;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonWriter;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.io.StringWriter;
 
+@Entity
+@Table(name="Prearrival")
 public class ShipMaster implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private String sName;
     private String callSign;
+
+    @Id
     private int imoNum;
+
     private String agentInfo;
     private String aForm;
     private int eta;
     private int bNum;
     private String nextPort;
     private int etd;
-    private String disCargoA;
+    private int disCargoA;
     private String discargoD;
-    private String loadCargoA;
+    private int loadCargoA;
     private String loadCargoD;
     private int nPassArr;
     private int nPassDep;
 
 
     public ShipMaster(String sName, String callSign, int imoNum, String agentInfo, String aForm,
-                      int eta, int bNum, String nextPort, int etd, String disCargoD, String disCargoA,
-                      String loadCargoD, String loadCargoA, int nPassArr, int nPassDep) {
+                      int eta, int bNum, String nextPort, int etd, String disCargoD, int disCargoA,
+                      String loadCargoD, int loadCargoA, int nPassArr, int nPassDep) {
         this.sName = sName;
         this.callSign = callSign;
         this.imoNum = imoNum;
@@ -151,11 +159,11 @@ public class ShipMaster implements Serializable {
         this.etd = etd;
     }
 
-    public String getDisCargoA() {
+    public int getDisCargoA() {
         return disCargoA;
     }
 
-    public void setDisCargoA(String disCargoA) {
+    public void setDisCargoA(int disCargoA) {
         this.disCargoA = disCargoA;
     }
 
@@ -167,11 +175,11 @@ public class ShipMaster implements Serializable {
         this.discargoD = discargoD;
     }
 
-    public String getLoadCargoA() {
+    public int getLoadCargoA() {
         return loadCargoA;
     }
 
-    public void setLoadCargoA(String loadCargoA) {
+    public void setLoadCargoA(int loadCargoA) {
         this.loadCargoA = loadCargoA;
     }
 

@@ -19,7 +19,6 @@
           <element id="library" level="project" name="Maven: javax.interceptor:javax.interceptor-api:1.2" />
           <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
           <element id="library" level="project" name="Maven: org.primefaces:primefaces:7.0" />
-          <element id="library" level="project" name="Maven: org.apache.geronimo.specs:geronimo-jms_1.1_spec:1.1.1" />
           <element id="library" level="project" name="Maven: javax.jms:javax.jms-api:2.0" />
         </element>
       </element>
