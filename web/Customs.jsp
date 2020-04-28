@@ -6,7 +6,6 @@
 <body>
     <h2> Pre Arrival Forms Queue </h2>
 <table>
-    <c:forEach var="paf" items="@{pafs}">
         <tr>
             <td>Ship Name: ${paf.sName}</td>
             <td>Call Sign: ${paf.callSign}</td>
@@ -23,7 +22,6 @@
             <td>Loading Cargo Amount: ${paf.loadCargoA}</td>
             <td>Agent Information: ${paf.agentInfo}</td>
         </tr>
-    </c:forEach>
 </table>
 </body>
 </html>
