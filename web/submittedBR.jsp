@@ -9,38 +9,35 @@
 <form class="form" method="post" action="${pageContext.request.contextPath}/submitBR">
     <div>
         <label for="imoNum">IMO Number:</label>
-        <input type="number" name="sNape" id="imoNum" required />
+        <input type="number" name="sNape" id="imoNum" value="@{imoNum}" />
     </div>
     <div>
         <label for="quay">Quay:</label>
-        <input type="text" name="quay" id="quay" required />
+        <input type="text" name="quay" id="quay" value="@{quay}" />
     </div>
     <div>
         <label for="bNum">Berth Number:</label>
-        <input type="number" name="bNum" id="bNum" required />
+        <input type="number" name="bNum" id="bNum" value="@{bNum}" />
     </div>
     <div>
-        <label for="eta">ETA:</label>
-        <input type="date" name="eta" id="eta" required />
+        <label for="eta">Agent Info:</label>
+        <input type="date" name="eta" id="eta" value="@{eta}" />
     </div>
     <div>
-        <label for="ata">ATA:</label>
-        <input type="date" name="ata" id="ata" required />
+        <label for="ata">Arriving From:</label>
+        <input type="date" name="ata" id="ata" value="@{ata}" />
     </div>
     <div>
-        <label for="etd">ETD:</label>
-        <input type="date" name="etd" id="etd" required />
+        <label for="etd">ETA:</label>
+        <input type="date" name="etd" id="etd" value="@{etd}" />
     </div>
     <div>
-        <label for="atd">ATD:</label>
-        <input type="date" name="atd" id="atd" required />
+        <label for="atd">Berth Number:</label>
+        <input type="date" name="atd" id="atd" value="@{atd}" />
     </div>
     <div>
         <label for="status">Status:</label>
-        <input type="number" name="status" id="status" required />
-    </div>
-    <div>
-        <a href="${pageContext.request.contextPath}/">Back</a> or <button type="submit" name="submit">Submit</button>
+        <input type="number" name="status" id="status" value="@{status}" />
     </div>
 </form>
 </div>

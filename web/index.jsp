@@ -13,5 +13,6 @@
 <a href="${pageContext.request.contextPath}/shipAgent.jsp">Ship Agent</a>
 <a href="${pageContext.request.contextPath}/shipMaster.jsp">Ship Master</a>
 <a href="${pageContext.request.contextPath}/Customs.jsp">Customs Agent</a>
+<a href="${pageContext.request.contextPath}/Logout.jsp">Logout</a>
 </body>
 </html>

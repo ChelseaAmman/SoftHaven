@@ -13,7 +13,7 @@ import javax.swing.*;
 import beans.PreArrivalForm;
 import dao.*;
 
-@WebServlet(urlPatterns= {"/SoftHavenLL","/submitPaf"})
+@WebServlet(urlPatterns= {"/submitPaf","/submitBR","/customs","/shipAgent"})
 public class FrontController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -31,7 +31,7 @@ public class FrontController extends HttpServlet {
         String operation = request.getRequestURI();
         System.out.println(operation);
         if (operation.equals("/SoftHavenLL")) {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
 
         } else if (operation.equals("/SoftHavenLL/shipMaster")) {
             try {
@@ -58,11 +58,18 @@ public class FrontController extends HttpServlet {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 e.printStackTrace();
-                System.out.println("Exception during edit operation");
+                System.out.println("Exception");
             }
             request.getRequestDispatcher("shipMaster.jsp").forward(request,response);
+
         }else if(operation.equals("/SoftHavenLL/submitPaf")){
             request.getRequestDispatcher("submitted.jsp").forward(request,response);
+        }else if(operation.equals("/SoftHavenLL/shipAgent")) {
+            request.getRequestDispatcher("shipAgent.jsp").forward(request, response);
+        }else if(operation.equals("/SoftHavenLL/submitBR")){
+            request.getRequestDispatcher("submittedBR.jsp");
+        }else if(operation.equals("/SoftHavenLL/customs")){
+            request.getRequestDispatcher("Customs.jsp");
         }
     }
 }
